@@ -13,7 +13,7 @@ builder.Services.AddHttpClient<WeatherApiClient>(client =>
     var apiUrl = builder.Configuration["API_BASE_URL"]
         ?? "https+http://apiservice";
 
-    client.BaseAddress = new(apiUrl);
+    client.BaseAddress = new Uri(apiUrl);
 });
 
 var app = builder.Build();
@@ -24,6 +24,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// Only redirect HTTPS locally.
+// Render handles HTTPS at its proxy.
 if (app.Environment.IsDevelopment())
 {
     app.UseHttpsRedirection();
