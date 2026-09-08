@@ -36,7 +36,7 @@ app.UseAntiforgery();
 
 //app.UseOutputCache();
 
-app.MapStaticAssets();
+app.UseStaticFiles();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
